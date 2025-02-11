@@ -43,7 +43,7 @@ runs:
     - name: Checkout
       uses: actions/checkout@v4
       with:
-        repository: RadxaOS-SDK/rsdk
+        repository: RadxaYuntian/rsdk
         path: .tmp/rsdk
     - name: Setup rsdk
       uses: ./.tmp/rsdk/.github/actions/setup
