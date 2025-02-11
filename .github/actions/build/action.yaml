@@ -41,7 +41,7 @@ runs:
         remove-codeql: true
         remove-docker-images: true
     - name: Setup rsdk
-      uses: RadxaOS-SDK/rsdk/.github/actions/setup@main
+      uses: ./.github/actions/setup
     - name: Set suite based on input variables
       shell: bash
       run: |
