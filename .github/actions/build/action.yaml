@@ -40,8 +40,13 @@ runs:
         remove-haskell: true
         remove-codeql: true
         remove-docker-images: true
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+        repository: RadxaOS-SDK/rsdk
+        path: .tmp/rsdk
     - name: Setup rsdk
-      uses: ./.github/actions/setup
+      uses: ./.tmp/rsdk/.github/actions/setup
     - name: Set suite based on input variables
       shell: bash
       run: |
