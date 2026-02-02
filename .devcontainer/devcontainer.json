@@ -17,7 +17,7 @@
   "image": "mcr.microsoft.com/devcontainers/base:bookworm",
   "features": {
     "ghcr.io/devcontainers/features/nix:1": {
-      "version": "2.21.0",
+      "version": "latest",
       "packages": [
         "cachix",
         "direnv",
