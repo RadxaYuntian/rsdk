@@ -33,7 +33,7 @@ runs:
     - name: Maximize build space
       uses: easimon/maximize-build-space@v10
       with:
-        root-reserve-mb: 24576
+        root-reserve-mb: 32768
         swap-size-mb: 2048
         remove-dotnet: true
         remove-android: true
