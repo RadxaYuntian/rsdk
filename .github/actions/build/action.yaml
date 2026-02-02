@@ -30,21 +30,6 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - name: Maximize build space
-      uses: easimon/maximize-build-space@v10
-      with:
-        root-reserve-mb: 32768
-        swap-size-mb: 2048
-        remove-dotnet: true
-        remove-android: true
-        remove-haskell: true
-        remove-codeql: true
-        remove-docker-images: true
-    - name: Print environment status
-      shell: bash
-      run: |
-        ls -la /
-        df -h
     - name: Setup rsdk
       uses: RadxaYuntian/rsdk/.github/actions/setup@main
     - name: Set suite based on input variables
