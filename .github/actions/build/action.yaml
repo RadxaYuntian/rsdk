@@ -40,6 +40,11 @@ runs:
         remove-haskell: true
         remove-codeql: true
         remove-docker-images: true
+    - name: Print environment status
+      shell: bash
+      run: |
+        ls -la /
+        df -h
     - name: Setup rsdk
       uses: RadxaYuntian/rsdk/.github/actions/setup@main
     - name: Set suite based on input variables
