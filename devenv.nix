@@ -13,7 +13,6 @@
     git
     gh
     gptfdisk
-    guestfs-tools
     jq
     mdbook
     mdbook-admonish
