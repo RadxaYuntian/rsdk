@@ -15,7 +15,6 @@
     gptfdisk
     guestfs-tools
     jq
-    libguestfs-with-appliance
     mdbook
     mdbook-admonish
     mdbook-cmdrun
