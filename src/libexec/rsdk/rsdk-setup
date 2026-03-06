@@ -112,6 +112,7 @@ EOF
 # https://discord.com/channels/1036369714731036712/1036369758024650792/1479376272395210885
 install_devcontainer_cli() {
 	local devenv_shell=
+    env
 	if [[ -z ${DEVENV_CMDLINE:-} ]]; then
 		echo "Not in devenv shell. Enter shell to install npm."
 		devenv_shell="devenv shell"
