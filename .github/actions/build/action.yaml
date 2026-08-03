@@ -58,11 +58,11 @@ runs:
       run: |
         set -euo pipefail
         sector_sizes=( $(jq -ec '. | map(select(.product == "${{ inputs.product }}"))[] | if has("sector_size") then .sector_size[] else 512 end' src/share/rsdk/configs/products.json) )
-        mkdir -p out/${{ inputs.product }}
-        touch out/${{ inputs.product }}/build-image
-        touch out/${{ inputs.product }}/output.img
-        touch out/${{ inputs.product }}/rootfs.tar
         for size in "${sector_sizes[@]}"; do
+          mkdir -p out/${{ inputs.product }}
+          touch out/${{ inputs.product }}/build-image
+          touch out/${{ inputs.product }}/output.img
+          touch out/${{ inputs.product }}/rootfs.tar
           pushd out/${{ inputs.product }}*
             mv build-image "build-$size-image"
           popd
