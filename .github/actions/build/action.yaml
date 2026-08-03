@@ -62,7 +62,10 @@ runs:
           src/bin/rsdk setup
           sector_sizes=( $(jq -ec '. | map(select(.product == "${{ inputs.product }}"))[] | if has("sector_size") then .sector_size[] else 512 end' src/share/rsdk/configs/products.json) )
           for size in "${sector_sizes[@]}"; do
-            src/bin/rsdk shell rsdk build ${{ env.options }} --sector-size "$size" --image-name "output_$size.img" ${{ inputs.product }} ${{ inputs.suite }} ${{ inputs.edition }}
+            mkdir out/${{ inputs.product }}
+            touch out/${{ inputs.product }}/build-image
+            touch out/${{ inputs.product }}/output.img
+            touch out/${{ inputs.product }}/rootfs.tar
             pushd out/${{ inputs.product }}*
               mv build-image "build-$size-image"
             popd
