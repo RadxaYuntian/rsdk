@@ -54,22 +54,19 @@ runs:
           echo "build_${size}=true" >> $GITHUB_ENV
         done
     - name: Build within devcontainer
-      uses: devcontainers/ci@v0.3
-      with:
-        push: never
-        runCmd: |
-          set -euo pipefail
-          src/bin/rsdk setup
-          sector_sizes=( $(jq -ec '. | map(select(.product == "${{ inputs.product }}"))[] | if has("sector_size") then .sector_size[] else 512 end' src/share/rsdk/configs/products.json) )
-          for size in "${sector_sizes[@]}"; do
-            mkdir out/${{ inputs.product }}
-            touch out/${{ inputs.product }}/build-image
-            touch out/${{ inputs.product }}/output.img
-            touch out/${{ inputs.product }}/rootfs.tar
-            pushd out/${{ inputs.product }}*
-              mv build-image "build-$size-image"
-            popd
-          done
+      shell: bash
+      run: |
+        set -euo pipefail
+        sector_sizes=( $(jq -ec '. | map(select(.product == "${{ inputs.product }}"))[] | if has("sector_size") then .sector_size[] else 512 end' src/share/rsdk/configs/products.json) )
+        mkdir out/${{ inputs.product }}
+        touch out/${{ inputs.product }}/build-image
+        touch out/${{ inputs.product }}/output.img
+        touch out/${{ inputs.product }}/rootfs.tar
+        for size in "${sector_sizes[@]}"; do
+          pushd out/${{ inputs.product }}*
+            mv build-image "build-$size-image"
+          popd
+        done
     - name: Prepare for release
       id: prep
       shell: bash
